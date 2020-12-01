@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 /**
- * 点赞的动画主要在[LikeView]中
+ * 点赞的动画在[LikeView]中开始
  */
 class MainActivity : AppCompatActivity() {
 
