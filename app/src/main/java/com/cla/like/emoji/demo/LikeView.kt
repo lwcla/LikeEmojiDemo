@@ -8,7 +8,6 @@ import android.util.TypedValue
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import com.acode.emoji.toDrawable
 
 class LikeView(context: Context, attr: AttributeSet? = null) : AppCompatTextView(context, attr) {
 

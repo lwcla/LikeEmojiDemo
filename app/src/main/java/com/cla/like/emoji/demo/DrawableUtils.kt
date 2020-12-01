@@ -1,4 +1,4 @@
-package com.acode.emoji
+package com.cla.like.emoji.demo
 
 import android.content.Context
 import android.graphics.drawable.Drawable
