@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
+/**
+ * 点赞的动画主要在[LikeView]中
+ */
 class MainActivity : AppCompatActivity() {
 
     private val adapter by lazy {
@@ -36,6 +39,9 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+/**
+ * adapter
+ */
 private class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     private val dataList = mutableListOf<LikeBean>()

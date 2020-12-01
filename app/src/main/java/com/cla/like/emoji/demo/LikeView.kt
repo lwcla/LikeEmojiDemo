@@ -12,6 +12,9 @@ import com.acode.emoji.toDrawable
 
 class LikeView(context: Context, attr: AttributeSet? = null) : AppCompatTextView(context, attr) {
 
+    /**
+     * 点赞的动画，写成dialog之后就不用在activity中去手动添加一个控件来做动画了
+     */
     private val likeAnimatorDialog by lazy { context.likeAnimatorDialogInstance(this) }
 
     private var likeBean: LikeBean? = null
@@ -37,6 +40,9 @@ class LikeView(context: Context, attr: AttributeSet? = null) : AppCompatTextView
         }
     }
 
+    /**
+     * 绑定数据
+     */
     fun bind(likeBean: LikeBean) {
         this.likeBean = likeBean
         like = likeBean.like
@@ -49,11 +55,16 @@ class LikeView(context: Context, attr: AttributeSet? = null) : AppCompatTextView
         setLikeMode()
     }
 
+    /**
+     * 这里把原来点赞之后向后台上报的代码删掉了
+     */
     private fun request() {
         val toLike = !like
 
         if (like) {
+            //头条就是这样做的
             //点赞状态下，在点赞的动画结束之前，这个时候只需要再继续做动画就行，不要取消点赞
+            //不过这里可以不用isShowing这个条件来判断，可以自己去保存上一次点击的的时间戳，然后和这一次的时间戳对比
             if (likeAnimatorDialog.isShowing) {
                 likeAnimatorDialog.addEmoji(this)
                 return
@@ -73,6 +84,9 @@ class LikeView(context: Context, attr: AttributeSet? = null) : AppCompatTextView
         setLikeMode()
     }
 
+    /**
+     * 设置点赞的数量
+     */
     private fun setLikeNum(num: Int) {
         text = num.toString()
 
@@ -85,6 +99,9 @@ class LikeView(context: Context, attr: AttributeSet? = null) : AppCompatTextView
         )
     }
 
+    /**
+     * 设置点赞的图标
+     */
     private fun setLikeMode() {
         if (like) {
             likeMode()
@@ -93,6 +110,9 @@ class LikeView(context: Context, attr: AttributeSet? = null) : AppCompatTextView
         }
     }
 
+    /**
+     * 弄成svg图之后，方便更换图片的颜色
+     */
     private fun likeMode() {
         setLeftDrawable(R.drawable.connector_icon_svg_like_active.toDrawable(context, R.color.c1))
     }

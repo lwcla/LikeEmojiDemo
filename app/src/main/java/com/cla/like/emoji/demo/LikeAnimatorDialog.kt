@@ -18,7 +18,7 @@ internal fun Context.likeAnimatorDialogInstance(likeView: View): LikeAnimatorDia
 
     return (this as? Activity?)?.run {
         val d = window.decorView.getTag(R.id.like_dialog) as? LikeAnimatorDialog?
-                ?: LikeAnimatorDialog(this)
+            ?: LikeAnimatorDialog(this)
         window.decorView.setTag(R.id.like_dialog, d)
 
         //如果当前点击的控件和上一次点击的控件不是同一个，那么就取消之前的动画和弹窗
@@ -34,6 +34,7 @@ internal fun Context.likeAnimatorDialogInstance(likeView: View): LikeAnimatorDia
 
 /**
  * 执行点赞动画的弹窗
+ * 写成dialog之后就不用在activity中去手动添加一个控件来做动画了
  */
 class LikeAnimatorDialog(private val mContext: Context) : Dialog(mContext, R.style.CartDialog) {
 
@@ -50,10 +51,10 @@ class LikeAnimatorDialog(private val mContext: Context) : Dialog(mContext, R.sty
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             // 设置Dialog不处理触摸事件
             this.addFlags(
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
-                            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
-                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE or
-                            WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+                        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE or
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
             initView()
             this.setGravity(Gravity.BOTTOM)
@@ -67,8 +68,8 @@ class LikeAnimatorDialog(private val mContext: Context) : Dialog(mContext, R.sty
     private fun initView() {
         val animLayout = LinearLayout(context)
         animLayout.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
         )
         setContentView(animLayout)
         animLayout.addView(animatorView)
